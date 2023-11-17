@@ -5,7 +5,7 @@
   "private": true,
   "types": "build/types/types.d.ts",
   "bin": {
-    "nucleus-cli": "bin/nucleus-cli"
+    "ncl": "bin/nucleus-cli"
   },
   "scripts": {
     "clean-build": "rimraf -rf ./build",
