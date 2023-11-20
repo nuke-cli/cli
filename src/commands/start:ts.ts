@@ -10,8 +10,8 @@ module.exports = {
       generateAppTSX,
       generateAppSASS,
       generateIndexTSX,
-      generateIndexHTML
-    } = toolbox;
+      generateIndexHTML,
+    } = toolbox
 
     const name = parameters.first
 
@@ -19,8 +19,8 @@ module.exports = {
       generateAppTSX(),
       generateAppSASS(),
       generateIndexTSX(),
-      generateIndexHTML()
-    ]);
+      generateIndexHTML(),
+    ])
 
     info(`Project ${name} has been created! Have fun.`)
   },
