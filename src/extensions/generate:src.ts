@@ -13,7 +13,7 @@ module.exports = (toolbox: GluegunToolbox) => {
     const props = {
       template: 'app.tsx.ejs',
       target: `${path}/App.tsx`,
-    };
+    }
 
     await template.generate({ ...props })
     info(`app.tsx from ${name} has been created!`)
@@ -23,13 +23,13 @@ module.exports = (toolbox: GluegunToolbox) => {
     const props = {
       template: 'app.sass.ejs',
       target: `${path}/App.sass`,
-    };
+    }
 
     await template.generate({ ...props })
     info(`app.sass from ${name} has been created!`)
   }
 
-  toolbox.generateIndexTSX = async(): Promise<void> => {
+  toolbox.generateIndexTSX = async (): Promise<void> => {
     const props = {
       template: 'index.tsx.ejs',
       target: `${path}/index.tsx`,
