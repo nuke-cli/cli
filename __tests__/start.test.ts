@@ -4,17 +4,18 @@ const src = filesystem.path(__dirname, '..');
 const name = 'project';
 let output: string; // used into the artifact
 
-const terminal = async (cmd) => system.run('node ' + filesystem.path(src, 'bin', 'nucleus-cli') + ` ${cmd}`)
+const terminal = async (cmd) =>
+  system.run('node ' + filesystem.path(src, 'bin', 'nucleus-cli') + ` ${cmd}`)
 
 describe('start:ts', () => {
   beforeAll(async () => {
-    output = await terminal(`start:ts ${name}`);
-  });
+    output = await terminal(`start:ts ${name}`)
+  })
 
   afterAll(() => {
     // remove the artifact
-    filesystem.remove(`${name}`);
-  });
+    filesystem.remove(`${name}`)
+  })
 
   test('creates app.tsx file' , () => {
     const appTSX = filesystem.read(`${name}/src/App.tsx`);
@@ -26,10 +27,10 @@ describe('start:ts', () => {
     expect(appSASS).toBeTruthy();
   });
 
-  test('creates index.tsx file' , () => {
-    const indexTSX = filesystem.read(`${name}/src/index.tsx`);
-    expect(indexTSX).toBeTruthy();
-  });
+  test('creates index.tsx file', () => {
+    const indexTSX = filesystem.read(`${name}/src/index.tsx`)
+    expect(indexTSX).toBeTruthy()
+  })
 
   test('creates html into /build' , () => {
     const indexHTML = filesystem.read(`${name}/build/index.html`);

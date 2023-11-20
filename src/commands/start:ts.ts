@@ -13,7 +13,7 @@ module.exports = {
       generateIndexHTML
     } = toolbox;
 
-    const name = parameters.first;
+    const name = parameters.first
 
     await Promise.all([
       generateAppTSX(),
@@ -22,6 +22,6 @@ module.exports = {
       generateIndexHTML()
     ]);
 
-    info(`Project ${name} has been created! Have fun.`);
+    info(`Project ${name} has been created! Have fun.`)
   },
 }
