@@ -9,7 +9,8 @@ module.exports = {
       parameters,
       generateAppTSX,
       generateAppSASS,
-      generateProjectIndex,
+      generateIndexTSX,
+      generateIndexHTML,
     } = toolbox
 
     const name = parameters.first
@@ -17,7 +18,8 @@ module.exports = {
     await Promise.all([
       generateAppTSX(),
       generateAppSASS(),
-      generateProjectIndex(),
+      generateIndexTSX(),
+      generateIndexHTML(),
     ])
 
     info(`Project ${name} has been created! Have fun.`)
