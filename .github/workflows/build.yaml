@@ -1,0 +1,47 @@
+name: Project Build
+
+on:
+  pull_request:
+    branches:
+      ['main', 'develop']
+  push:
+    branches:
+      ['main', 'develop']
+
+jobs:
+  continuos-integration:
+    # Sets a machine where the project gonna be forked
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    permissions:
+      checks: write
+      contents: write
+
+    steps:
+      # Creates an instance from our branch into Github's virtual machine
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Installs and sets up a Node version into Github's virtual machine 
+      - name: Installing Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Installing dependencies
+        run: npm install
+
+      # Runs linting when a PR is open or updated
+      - name: Linting
+        uses: wearerequired/lint-action@v2
+        with:
+          auto_fix: ${{ github.event_name == 'pull_request' }}
+          prettier: true
+
+      # To run tests
+      - name: Testing
+        run: npm test
