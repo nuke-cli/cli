@@ -1,10 +1,16 @@
 # nuke-cli
 
-A CLI focused in powering the star of your React based project.
+![CI](https://github.com/cl4pper/nuke-cli/workflows/CI/badge.svg?branch=main)
 
-## INSTRCTIONS:
+![Publish](https://github.com/cl4pper/nuke-cli/workflows/Publish/badge.svg?branch=main)
 
-To install: `yarn global add nuke-cli` or `npm i -g nuke-cli`.
+A CLI focused on powering the start of your web project.
+
+## INSTRUCTIONS:
+
+# To install:
+
+By npm: `npm install -g add nuke-cli`
 
 To start a project: `nuke start:ts <INSERT_PROJECT_NAME>`
 
