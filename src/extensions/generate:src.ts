@@ -1,7 +1,10 @@
 import { GluegunToolbox } from 'gluegun'
 
 module.exports = (toolbox: GluegunToolbox) => {
-  const { template, parameters } = toolbox
+  const {
+    template,
+    parameters
+  } = toolbox
   const name = parameters.first
   const path = `./${name}/src`
 
@@ -30,5 +33,13 @@ module.exports = (toolbox: GluegunToolbox) => {
     }
 
     await template.generate({ ...props })
+  }
+
+  toolbox.generateSRC = async () => {
+    Promise.all([
+      toolbox.generateAppTSX(),
+      toolbox.generateAppSASS(),
+      toolbox.generateIndexTSX(),
+    ]);
   }
 }

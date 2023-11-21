@@ -7,9 +7,7 @@ module.exports = {
     const {
       print: { info },
       parameters,
-      generateAppTSX,
-      generateAppSASS,
-      generateIndexTSX,
+      generateSRC,
       generateIndexHTML,
       generateRoot,
     } = toolbox
@@ -21,9 +19,7 @@ module.exports = {
     }
 
     Promise.all([
-      generateAppTSX(),
-      generateAppSASS(),
-      generateIndexTSX(),
+      generateSRC(),
       generateIndexHTML(),
       generateRoot(),
     ])
