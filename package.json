@@ -6,7 +6,6 @@
     "name": "cl4pper",
     "email": "cl4pper@gmail.com"
   },
-  "private": true,
   "types": "build/types/types.d.ts",
   "bin": {
     "ncl": "bin/nucleus-cli"
