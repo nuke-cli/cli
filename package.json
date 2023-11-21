@@ -1,7 +1,7 @@
 {
   "name": "nuke-cli",
-  "version": "1.0.0",
-  "description": "A CLI focused in powering your web based project.",
+  "version": "1.0.1",
+  "description": "A CLI focused on powering the start of your web project.",
   "author": {
     "name": "cl4pper",
     "email": "cl4pper@gmail.com"
