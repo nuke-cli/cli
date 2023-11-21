@@ -1,7 +1,12 @@
 import { GluegunToolbox } from 'gluegun'
 
 module.exports = (toolbox: GluegunToolbox) => {
-  const { http, parameters, template, filesystem: { write } } = toolbox
+  const {
+    http,
+    parameters,
+    template,
+    filesystem: { write },
+  } = toolbox
   const name = parameters.first
   const baseURL = 'https://raw.githubusercontent.com/cl4pper/react-setup/main/'
   // instatiate the api connection
@@ -35,8 +40,8 @@ module.exports = (toolbox: GluegunToolbox) => {
     await template.generate({
       template: 'readme.ejs',
       target: `${name}/README.md`,
-      props: { name }
-     })
+      props: { name },
+    })
   }
 
   toolbox.generateJestConfig = async (): Promise<void> => {
@@ -66,6 +71,6 @@ module.exports = (toolbox: GluegunToolbox) => {
       toolbox.generateJestConfig(),
       toolbox.generateGitignore(),
       toolbox.generateReadme(),
-    ]);
+    ])
   }
 }

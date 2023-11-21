@@ -11,7 +11,7 @@ module.exports = {
       generateAppSASS,
       generateIndexTSX,
       generateIndexHTML,
-      generateRoot
+      generateRoot,
     } = toolbox
 
     const name = parameters.first
@@ -25,7 +25,7 @@ module.exports = {
       generateAppSASS(),
       generateIndexTSX(),
       generateIndexHTML(),
-      generateRoot()
+      generateRoot(),
     ])
 
     info(`Project ${name} has been created! Have fun.`)
