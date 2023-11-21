@@ -1,7 +1,11 @@
 {
   "name": "nucleus-cli",
-  "version": "0.0.1",
-  "description": "nucleus-cli CLI",
+  "version": "1.0",
+  "description": "A CLI focused in powering your web based project.",
+  "author": {
+    "name": "cl4pper",
+    "email": "cl4pper@gmail.com"
+  },
   "private": true,
   "types": "build/types/types.d.ts",
   "bin": {
