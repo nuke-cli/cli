@@ -1,11 +1,11 @@
 import { GluegunCommand } from 'gluegun'
 
 const command: GluegunCommand = {
-  name: 'nucleus-cli',
+  name: 'nuke-cli',
   run: async (toolbox) => {
     const { print } = toolbox
 
-    print.info('Welcome to nucleus-cli.')
+    print.info('Welcome to nuke CLI.')
   },
 }
 

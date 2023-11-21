@@ -1,5 +1,5 @@
 {
-  "name": "nucleus-cli",
+  "name": "nuke-cli",
   "version": "1.0.0",
   "description": "A CLI focused in powering your web based project.",
   "author": {
@@ -8,7 +8,7 @@
   },
   "types": "build/types/types.d.ts",
   "bin": {
-    "ncl": "bin/nucleus-cli"
+    "nuke": "bin/nuke-cli"
   },
   "scripts": {
     "clean-build": "rimraf -rf ./build",
