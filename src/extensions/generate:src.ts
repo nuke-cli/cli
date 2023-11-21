@@ -3,8 +3,7 @@ import { GluegunToolbox } from 'gluegun'
 module.exports = (toolbox: GluegunToolbox) => {
   const {
     template,
-    parameters,
-    print: { info },
+    parameters
   } = toolbox
   const name = parameters.first
   const path = `./${name}/src`
@@ -16,7 +15,6 @@ module.exports = (toolbox: GluegunToolbox) => {
     }
 
     await template.generate({ ...props })
-    info(`app.tsx from ${name} has been created!`)
   }
 
   toolbox.generateAppSASS = async (): Promise<void> => {
@@ -26,7 +24,6 @@ module.exports = (toolbox: GluegunToolbox) => {
     }
 
     await template.generate({ ...props })
-    info(`app.sass from ${name} has been created!`)
   }
 
   toolbox.generateIndexTSX = async (): Promise<void> => {
@@ -36,6 +33,5 @@ module.exports = (toolbox: GluegunToolbox) => {
     }
 
     await template.generate({ ...props })
-    info(`Project index from ${name} has been created!`)
   }
 }
