@@ -5,7 +5,7 @@ const name = 'project'
 let output: string // used into the artifact
 
 const terminal = async (cmd) =>
-  system.run('node ' + filesystem.path(src, 'bin', 'nucleus-cli') + ` ${cmd}`)
+  system.run('node ' + filesystem.path(src, 'bin', 'nuke-cli') + ` ${cmd}`)
 
 describe('start:ts', () => {
   beforeAll(async () => {

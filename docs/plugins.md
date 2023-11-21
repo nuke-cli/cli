@@ -1,10 +1,10 @@
-# Plugin guide for nucleus-cli
+# Plugin guide for nuke-cli
 
-Plugins allow you to add features to nucleus-cli, such as commands and
+Plugins allow you to add features to nuke-cli, such as commands and
 extensions to the `toolbox` object that provides the majority of the functionality
-used by nucleus-cli.
+used by nuke-cli.
 
-Creating a nucleus-cli plugin is easy. Just create a repo with two folders:
+Creating a nuke-cli plugin is easy. Just create a repo with two folders:
 
 ```
 commands/
@@ -44,6 +44,6 @@ This is then accessible in your plugin's commands as `toolbox.bar`.
 
 # Loading a plugin
 
-To load a particular plugin (which has to start with `nucleus-cli-*`),
-install it to your project using `npm install --save-dev nucleus-cli-PLUGINNAME`,
-and nucleus-cli will pick it up automatically.
+To load a particular plugin (which has to start with `nuke-cli-*`),
+install it to your project using `npm install --save-dev nuke-cli-PLUGINNAME`,
+and nuke-cli will pick it up automatically.

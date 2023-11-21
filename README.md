@@ -1,11 +1,11 @@
-# nucleus-cli
+# nuke-cli
 
-A CLI focused in powering your React based project. By Typescript, or just clean Javascript.
+A CLI focused in powering the star of your React based project.
 
-To install: `yarn global add nucleus-cli` or `npm i -g nucleus-cli`.
+## INSTRCTIONS:
 
-## Commands:
+To install: `yarn global add nuke-cli` or `npm i -g nuke-cli`.
 
-CLI prefix: `ncl`.
+To start a project: `nuke start:ts <INSERT_PROJECT_NAME>`
 
 Engineered by [Gluegun](https://github.com/infinitered/gluegun).
