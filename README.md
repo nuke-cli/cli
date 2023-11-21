@@ -5,7 +5,6 @@
 
 [![CI](https://github.com/cl4pper/nuke-cli/actions/workflows/integration.yaml/badge.svg)](https://github.com/cl4pper/nuke-cli/actions/workflows/integration.yaml)
 
-
 A CLI focused on powering the start of your web project.
 
 ## INSTRUCTIONS:
