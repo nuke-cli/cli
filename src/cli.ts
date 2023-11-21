@@ -6,9 +6,9 @@ import { build } from 'gluegun'
 async function run(argv) {
   // create a CLI runtime
   const cli = build()
-    .brand('nucleus-cli')
+    .brand('nuke-cli')
     .src(__dirname)
-    .plugins('./node_modules', { matching: 'nucleus-cli-*', hidden: true })
+    .plugins('./node_modules', { matching: 'nuke-cli-*', hidden: true })
     .help() // provides default for help, h, --help, -h
     .version() // provides default for version, v, --version, -v
     .create()
