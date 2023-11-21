@@ -18,11 +18,7 @@ module.exports = {
       return info('A name is required!')
     }
 
-    Promise.all([
-      generateSRC(),
-      generateIndexHTML(),
-      generateRoot(),
-    ])
+    Promise.all([generateSRC(), generateIndexHTML(), generateRoot()])
 
     info(`Project ${name} has been created! Have fun.`)
   },

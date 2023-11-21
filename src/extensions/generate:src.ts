@@ -1,10 +1,7 @@
 import { GluegunToolbox } from 'gluegun'
 
 module.exports = (toolbox: GluegunToolbox) => {
-  const {
-    template,
-    parameters
-  } = toolbox
+  const { template, parameters } = toolbox
   const name = parameters.first
   const path = `./${name}/src`
 
@@ -40,6 +37,6 @@ module.exports = (toolbox: GluegunToolbox) => {
       toolbox.generateAppTSX(),
       toolbox.generateAppSASS(),
       toolbox.generateIndexTSX(),
-    ]);
+    ])
   }
 }
