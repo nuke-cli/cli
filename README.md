@@ -5,13 +5,15 @@
 
 [![CI](https://github.com/cl4pper/nuke-cli/actions/workflows/integration.yaml/badge.svg)](https://github.com/cl4pper/nuke-cli/actions/workflows/integration.yaml)
 
+[![Publish](https://github.com/cl4pper/nuke-cli/actions/workflows/publish.yaml/badge.svg)](https://github.com/cl4pper/nuke-cli/actions/workflows/publish.yaml)
+
 A CLI focused on powering the start of your web project.
 
 ## INSTRUCTIONS:
 
 # To install:
 
-By npm: `npm install -g add nuke-cli`
+By npm: `npm install -g nuke-cli`
 
 To start a project: `nuke start:ts <INSERT_PROJECT_NAME>`
 
