@@ -19,8 +19,33 @@ describe('start:ts', () => {
 
   describe('generates root folder', () => {
     test('creates webpack.config into root', () => {
-      const webpack = filesystem.read(`${name}/webpack.config.js`)
-      expect(webpack).toBeTruthy()
+      const w = filesystem.read(`${name}/webpack.config.js`)
+      expect(w).toBeTruthy()
+    })
+
+    test('creates .babelrc into root', () => {
+      const b = filesystem.read(`${name}/.babelrc`)
+      expect(b).toBeTruthy()
+    })
+
+    test('creates package.json into root', () => {
+      const p = filesystem.read(`${name}/package.json`)
+      expect(p).toBeTruthy()
+    })
+
+    test('creates tsconfig.json into root', () => {
+      const t = filesystem.read(`${name}/tsconfig.json`)
+      expect(t).toBeTruthy()
+    })
+
+    test('creates jest.config.json into root', () => {
+      const j = filesystem.read(`${name}/jest.config.json`)
+      expect(j).toBeTruthy()
+    })
+
+    test('creates .gitignore into root', () => {
+      const g = filesystem.read(`${name}/.gitignore`)
+      expect(g).toBeTruthy()
     })
   });
 
