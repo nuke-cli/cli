@@ -47,6 +47,11 @@ describe('start:ts', () => {
       const g = filesystem.read(`${name}/.gitignore`)
       expect(g).toBeTruthy()
     })
+
+    test('creates README.md into root', () => {
+      const r = filesystem.read(`${name}/README.md`)
+      expect(r).toBeTruthy()
+    })
   });
 
   describe('generates /src', () => {

@@ -31,6 +31,14 @@ module.exports = (toolbox: GluegunToolbox) => {
     write(`./${name}/tsconfig.json`, JSON.stringify(data, null, 2))
   }
 
+  toolbox.generateReadme = async (): Promise<void> => {
+    await template.generate({
+      template: 'readme.ejs',
+      target: `${name}/README.md`,
+      props: { name }
+     })
+  }
+
   toolbox.generateJestConfig = async (): Promise<void> => {
     const props = {
       template: 'jest.config.ejs',
@@ -56,7 +64,8 @@ module.exports = (toolbox: GluegunToolbox) => {
       toolbox.generatePackageJSON(),
       toolbox.generateTSConfig(),
       toolbox.generateJestConfig(),
-      toolbox.generateGitignore()
+      toolbox.generateGitignore(),
+      toolbox.generateReadme(),
     ]);
   }
 }
