@@ -7,20 +7,18 @@ module.exports = {
     const {
       print: { info },
       parameters,
-      generateAppTSX,
-      generateAppSASS,
-      generateIndexTSX,
+      generateSRC,
       generateIndexHTML,
+      generateRoot,
     } = toolbox
 
     const name = parameters.first
 
-    await Promise.all([
-      generateAppTSX(),
-      generateAppSASS(),
-      generateIndexTSX(),
-      generateIndexHTML(),
-    ])
+    if (!name) {
+      return info('A name is required!')
+    }
+
+    Promise.all([generateSRC(), generateIndexHTML(), generateRoot()])
 
     info(`Project ${name} has been created! Have fun.`)
   },
