@@ -1,6 +1,6 @@
 {
   "name": "nucleus-cli",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "A CLI focused in powering your web based project.",
   "author": {
     "name": "cl4pper",
