@@ -1,6 +1,6 @@
 {
   "name": "nuke-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A CLI focused on powering the start of your web project.",
   "author": {
     "name": "cl4pper",
@@ -22,6 +22,27 @@
     "snapupdate": "jest --updateSnapshot",
     "coverage": "jest --coverage"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cl4pper/nuke-cli.git"
+  },
+  "keywords": [
+    "nuke-cli",
+    "nuke",
+    "cli",
+    "web",
+    "boilerplate",
+    "setup",
+    "react",
+    "node",
+    "typescript",
+    "javascript",
+    "webpack",
+    "jest",
+    "frontend",
+    "backend",
+    "fullstack"
+  ],
   "files": [
     "build",
     "LICENSE",
