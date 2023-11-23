@@ -73,6 +73,21 @@ module.exports = (toolbox: GluegunToolbox) => {
     })
   }
 
+  toolbox.generateDockerSettings = async (): Promise<void> => {
+    await template.generate({
+      template: 'dockerfile.ejs',
+      target: `${name}/Dockerfile`,
+    })
+    await template.generate({
+      template: 'docker-compose.yml.ejs',
+      target: `${name}/docker-compose.yml`,
+    })
+    await template.generate({
+      template: 'dockerignore.ejs',
+      target: `${name}/.dockerignore`,
+    })
+  }
+
   toolbox.generateRoot = (): void => {
     Promise.all([
       toolbox.generateWebpack(),
@@ -83,6 +98,7 @@ module.exports = (toolbox: GluegunToolbox) => {
       toolbox.generateGitignore(),
       toolbox.generateReadme(),
       toolbox.generateLintingSettings(),
+      toolbox.generateDockerSettings(),
     ])
   }
 }

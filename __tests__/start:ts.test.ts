@@ -20,47 +20,57 @@ describe('start:ts', () => {
   })
 
   describe('generates root folder', () => {
-    test('creates webpack.config into root', () => {
+    test('setup webpack.config into root', () => {
       const w = filesystem.read(`${name}/webpack.config.js`)
       expect(w).toBeTruthy()
     })
 
-    test('creates .babelrc into root', () => {
+    test('setup .babelrc into root', () => {
       const b = filesystem.read(`${name}/.babelrc`)
       expect(b).toBeTruthy()
     })
 
-    test('creates package.json into root', () => {
+    test('setup package.json into root', () => {
       const p = filesystem.read(`${name}/package.json`)
       expect(p).toBeTruthy()
     })
 
-    test('creates tsconfig.json into root', () => {
+    test('setup tsconfig.json into root', () => {
       const t = filesystem.read(`${name}/tsconfig.json`)
       expect(t).toBeTruthy()
     })
 
-    test('creates jest.config.json into root', () => {
+    test('setup jest.config.json into root', () => {
       const j = filesystem.read(`${name}/jest.config.json`)
       expect(j).toBeTruthy()
     })
 
-    test('creates .gitignore into root', () => {
+    test('setup .gitignore into root', () => {
       const g = filesystem.read(`${name}/.gitignore`)
       expect(g).toBeTruthy()
     })
 
-    test('creates README.md into root', () => {
+    test('setup README.md into root', () => {
       const r = filesystem.read(`${name}/README.md`)
       expect(r).toBeTruthy()
     })
 
-    test('creates linting settings into root', () => {
+    test('setup linting settings into root', () => {
       const prettierRc = filesystem.read(`${name}/.prettierrc`)
       const prettierIgnore = filesystem.read(`${name}/.prettierignore`)
 
       expect(prettierRc).toBeTruthy()
       expect(prettierIgnore).toBeTruthy()
+    })
+
+    test('setup Docker settings into root', () => {
+      const dockerfile = filesystem.read(`${name}/Dockerfile`)
+      const dockerignore = filesystem.read(`${name}/.dockerignore`)
+      const dockerCompose = filesystem.read(`${name}/docker-compose.yml`)
+
+      expect(dockerfile).toBeTruthy()
+      expect(dockerignore).toBeTruthy()
+      expect(dockerCompose).toBeTruthy()
     })
 
     /*
