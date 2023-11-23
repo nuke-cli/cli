@@ -3,6 +3,7 @@ import { system, filesystem } from 'gluegun'
 const src = filesystem.path(__dirname, '..')
 const name = 'project'
 let output: string // used into the artifact
+// let io: MockSTDIN// used into the artifact
 
 const terminal = async (cmd) =>
   system.run('node ' + filesystem.path(src, 'bin', 'nuke-cli') + ` ${cmd}`)
@@ -10,11 +11,12 @@ const terminal = async (cmd) =>
 describe('start:ts', () => {
   beforeAll(async () => {
     output = await terminal(`start:ts ${name}`)
+    //io = stdin()
   })
 
   afterAll(() => {
-    // remove the artifact
     filesystem.remove(`${name}`)
+    //io.restore()
   })
 
   describe('generates root folder', () => {
@@ -52,6 +54,52 @@ describe('start:ts', () => {
       const r = filesystem.read(`${name}/README.md`)
       expect(r).toBeTruthy()
     })
+
+    test('creates linting settings into root', () => {
+      const prettierRc = filesystem.read(`${name}/.prettierrc`)
+      const prettierIgnore = filesystem.read(`${name}/.prettierignore`)
+
+      expect(prettierRc).toBeTruthy()
+      expect(prettierIgnore).toBeTruthy()
+    })
+
+    /*
+    ** Test for prompt interactions
+    ** Must be reviewed
+    ** Original example from example from https://shift.infinite.red/integration-testing-interactive-clis-93af3cc0d56f
+
+    test('creates linting settings', async done => {
+      const keys = {
+        up: '\x1B\x5B\x41',
+        down: '\x1B\x5B\x42',
+        enter: '\x0D',
+        space: '\x20'
+      }
+
+      const sendKeystrokes = async () => {
+        io.send(keys.down)
+        io.send(keys.enter)
+      }
+      setTimeout(() => sendKeystrokes().then(), 5)
+
+      const answer = await prompt.ask({
+        name: 'lint',
+        type: 'select',
+        message: 'Generate linting settings (prettier)?',
+        choices: ['No', 'Yes']
+      })
+
+      expect(answer).toEqual({ lint: 'Yes' })
+
+      const prettierRc = filesystem.read(`${name}/.prettierrc`)
+      const prettierIgnore = filesystem.read(`${name}/.prettierignore`)
+
+      expect(prettierRc).toBeTruthy()
+      expect(prettierIgnore).toBeTruthy()
+
+      done();
+    })
+    */
   })
 
   describe('generates /src', () => {

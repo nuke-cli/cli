@@ -9,7 +9,7 @@ module.exports = {
       parameters,
       generateSRC,
       generateIndexHTML,
-      generateRoot,
+      generateRoot
     } = toolbox
 
     const name = parameters.first
