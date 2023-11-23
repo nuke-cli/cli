@@ -62,6 +62,32 @@ module.exports = (toolbox: GluegunToolbox) => {
     await template.generate({ ...props })
   }
 
+  toolbox.generateLintingSettings = async (): Promise<void> => {
+    await template.generate({
+      template: 'prettierrc.ejs',
+      target: `${name}/.prettierrc`,
+    })
+    await template.generate({
+      template: 'prettierignore.ejs',
+      target: `${name}/.prettierignore`,
+    })
+  }
+
+  toolbox.generateDockerSettings = async (): Promise<void> => {
+    await template.generate({
+      template: 'dockerfile.ejs',
+      target: `${name}/Dockerfile`,
+    })
+    await template.generate({
+      template: 'docker-compose.yml.ejs',
+      target: `${name}/docker-compose.yml`,
+    })
+    await template.generate({
+      template: 'dockerignore.ejs',
+      target: `${name}/.dockerignore`,
+    })
+  }
+
   toolbox.generateRoot = (): void => {
     Promise.all([
       toolbox.generateWebpack(),
@@ -71,6 +97,8 @@ module.exports = (toolbox: GluegunToolbox) => {
       toolbox.generateJestConfig(),
       toolbox.generateGitignore(),
       toolbox.generateReadme(),
+      toolbox.generateLintingSettings(),
+      toolbox.generateDockerSettings(),
     ])
   }
 }
