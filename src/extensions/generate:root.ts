@@ -63,15 +63,14 @@ module.exports = (toolbox: GluegunToolbox) => {
   }
 
   toolbox.generateLintingSettings = async (): Promise<void> => {
-
     await template.generate({
       template: 'prettierrc.ejs',
       target: `${name}/.prettierrc`,
-     })
+    })
     await template.generate({
       template: 'prettierignore.ejs',
       target: `${name}/.prettierignore`,
-     })
+    })
   }
 
   toolbox.generateRoot = (): void => {
@@ -83,7 +82,7 @@ module.exports = (toolbox: GluegunToolbox) => {
       toolbox.generateJestConfig(),
       toolbox.generateGitignore(),
       toolbox.generateReadme(),
-      toolbox.generateLintingSettings()
+      toolbox.generateLintingSettings(),
     ])
   }
 }
