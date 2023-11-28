@@ -43,7 +43,9 @@ Coming up...
 ```
 
 ## Misc:
+
 Folder structure inside the project folder:
+
 ```
 /build
 -- index.html

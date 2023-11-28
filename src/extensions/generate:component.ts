@@ -1,7 +1,11 @@
 import { GluegunToolbox } from 'gluegun'
 
 module.exports = (toolbox: GluegunToolbox) => {
-  const { template, parameters, filesystem: { append, write, read } } = toolbox
+  const {
+    template,
+    parameters,
+    filesystem: { append, write, read },
+  } = toolbox
   const name = parameters.first
   const path = `src/components/${name}/`
 
@@ -36,10 +40,11 @@ module.exports = (toolbox: GluegunToolbox) => {
   }
 
   toolbox.appendComponentIndex = async (): Promise<void> => {
-    const data = `export { default as ${name} } from './${name}/component'`;
+    const data = `export { default as ${name} } from './${name}/component'`
 
-    if(!read('src/components/index.ts')) return write('src/components/index.ts', data);
-    
+    if (!read('src/components/index.ts'))
+      return write('src/components/index.ts', data)
+
     append('src/components/index.ts', data)
   }
 
@@ -48,7 +53,7 @@ module.exports = (toolbox: GluegunToolbox) => {
       toolbox.generateTSX(),
       toolbox.generateSASS(),
       toolbox.generateTests(),
-      toolbox.appendComponentIndex()
+      toolbox.appendComponentIndex(),
     ])
   }
 }

@@ -7,7 +7,7 @@ module.exports = {
     const {
       print: { info },
       parameters,
-      generateComponent
+      generateComponent,
     } = toolbox
 
     const name = parameters.first
@@ -16,7 +16,7 @@ module.exports = {
       return info('A name for component is required!')
     }
 
-    generateComponent();
+    generateComponent()
 
     info(`Component ${name} folder has been created.`)
   },
