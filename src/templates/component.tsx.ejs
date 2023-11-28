@@ -1,0 +1,17 @@
+import React from 'react';
+
+// STYLE
+import './component.sass';
+
+export type Props = {
+    id: string;
+}
+
+const <%= props.name %> = (props: Props): JSX.Element => {
+    const { id } = props;
+    return (
+        <div id={id} data-testid={id} className="<%= props.name %>"><%= props.name %></div>
+    );
+};
+
+export default <%= props.name %>;
