@@ -8,18 +8,21 @@
 
 Have a look at the original [boilerplate](https://github.com/cl4pper/react-setup).
 
+### Features:
+
 In this version you'll be able to create a React project from zero
 
 - React powered by [TypeScript](https://www.npmjs.com/package/typescript)
 - [webpack](https://www.npmjs.com/package/webpack) as the module bundler
 - unit tests run by [Jest](https://www.npmjs.com/package/jest) and [React Testing Library](https://www.npmjs.com/package/@testing-library/react)
+- local code lintintg by [Prettier](https://www.npmjs.com/package/prettier)
+- Docker settings
 
 Coming up...
 
-- local code lintintg by [Prettier](https://www.npmjs.com/package/prettier)
 - CI by Github actions
-- Docker settings
-- **create a Node based API** from zero
+- components template generator (.tsx, .sass, .test.tsx)
+- **generate a Node based API** from zero
 
 ## Instructions:
 
