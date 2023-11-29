@@ -40,13 +40,9 @@ module.exports = (toolbox: GluegunToolbox) => {
     })
   }
 
-  toolbox.generateJestConfig = async (): Promise<void> => {
-    const props = {
-      template: 'jest.config.ejs',
-      target: `${name}/jest.config.json`,
-    }
-
-    await template.generate({ ...props })
+  toolbox.getTestConfig = async (): Promise<void> => {
+    const { data } = await api.get('jest.config.json')
+    write(`./${name}/jest.config.json`, `${data}`)
   }
 
   toolbox.generateGitignore = async (): Promise<void> => {
@@ -90,7 +86,7 @@ module.exports = (toolbox: GluegunToolbox) => {
       toolbox.getBabelrc(),
       toolbox.getPackageJSON(),
       toolbox.getTSConfig(),
-      toolbox.generateJestConfig(),
+      toolbox.getTestConfig(),
       toolbox.generateGitignore(),
       toolbox.generateReadme(),
       toolbox.generateLintingSettings(),
