@@ -22,26 +22,28 @@ describe('start:ts', () => {
   describe('generates root folder', () => {
     test('setup webpack.config', () => {
       const file = filesystem.read(`${name}/webpack.config.js`)
-      expect(file).toContain("entry: path.resolve(__dirname, 'src', 'index.tsx'),")
+      expect(file).toContain(
+        "entry: path.resolve(__dirname, 'src', 'index.tsx'),"
+      )
       expect(file).toContain("path: path.resolve(__dirname, 'build'),")
       expect(file).toContain("filename: 'bundle.js',")
     })
 
     test('setup .babelrc', () => {
       const file = filesystem.read(`${name}/.babelrc`)
-      expect(file).toContain("presets")
-      expect(file).toContain("plugins")
+      expect(file).toContain('presets')
+      expect(file).toContain('plugins')
     })
 
     test('setup package.json', () => {
       const file = filesystem.read(`${name}/package.json`)
-      expect(file).toContain("dependencies")
-      expect(file).toContain("devDependencies")
+      expect(file).toContain('dependencies')
+      expect(file).toContain('devDependencies')
     })
 
     test('setup tsconfig.json', () => {
       const file = filesystem.read(`${name}/tsconfig.json`)
-      expect(file).toContain("compilerOptions")
+      expect(file).toContain('compilerOptions')
     })
 
     test('setup jest.config.json', () => {
