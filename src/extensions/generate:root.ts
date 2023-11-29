@@ -12,27 +12,23 @@ module.exports = (toolbox: GluegunToolbox) => {
   // instatiate the api connection
   const api = http.create({ baseURL })
 
-  toolbox.generateWebpack = async (): Promise<void> => {
+  toolbox.getWebpack = async (): Promise<void> => {
     const { data } = await api.get('webpack.config.js')
-
     write(`./${name}/webpack.config.js`, `${data}`)
   }
 
-  toolbox.generateBabelrc = async (): Promise<void> => {
+  toolbox.getBabelrc = async (): Promise<void> => {
     const { data } = await api.get('.babelrc')
-
     write(`./${name}/.babelrc`, JSON.stringify(data, null, 2))
   }
 
-  toolbox.generatePackageJSON = async (): Promise<void> => {
+  toolbox.getPackageJSON = async (): Promise<void> => {
     const { data } = await api.get('package.json')
-
     write(`./${name}/package.json`, JSON.stringify(data, null, 2))
   }
 
-  toolbox.generateTSConfig = async (): Promise<void> => {
+  toolbox.getTSConfig = async (): Promise<void> => {
     const { data } = await api.get('tsconfig.json')
-
     write(`./${name}/tsconfig.json`, JSON.stringify(data, null, 2))
   }
 
@@ -73,32 +69,34 @@ module.exports = (toolbox: GluegunToolbox) => {
     })
   }
 
-  toolbox.generateDockerSettings = async (): Promise<void> => {
-    await template.generate({
-      template: 'dockerfile.ejs',
-      target: `${name}/Dockerfile`,
-    })
-    await template.generate({
-      template: 'docker-compose.yml.ejs',
-      target: `${name}/docker-compose.yml`,
-    })
-    await template.generate({
-      template: 'dockerignore.ejs',
-      target: `${name}/.dockerignore`,
-    })
+  toolbox.getDockerfile = async (): Promise<void> => {
+    const { data } = await api.get('Dockerfile')
+    write(`./${name}/Dockerfile`, `${data}`)
+  }
+
+  toolbox.getDockerCompose = async (): Promise<void> => {
+    const { data } = await api.get('docker-compose.yml')
+    write(`./${name}/docker-compose.yml`, `${data}`)
+  }
+
+  toolbox.getDockerIgnore = async (): Promise<void> => {
+    const { data } = await api.get('.dockerignore')
+    write(`./${name}/.dockerignore`, `${data}`)
   }
 
   toolbox.generateRoot = (): void => {
     Promise.all([
-      toolbox.generateWebpack(),
-      toolbox.generateBabelrc(),
-      toolbox.generatePackageJSON(),
-      toolbox.generateTSConfig(),
+      toolbox.getWebpack(),
+      toolbox.getBabelrc(),
+      toolbox.getPackageJSON(),
+      toolbox.getTSConfig(),
       toolbox.generateJestConfig(),
       toolbox.generateGitignore(),
       toolbox.generateReadme(),
       toolbox.generateLintingSettings(),
-      toolbox.generateDockerSettings(),
+      toolbox.getDockerfile(),
+      toolbox.getDockerCompose(),
+      toolbox.getDockerIgnore(),
     ])
   }
 }

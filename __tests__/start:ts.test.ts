@@ -20,42 +20,42 @@ describe('start:ts', () => {
   })
 
   describe('generates root folder', () => {
-    test('setup webpack.config into root', () => {
+    test('setup webpack.config', () => {
       const w = filesystem.read(`${name}/webpack.config.js`)
       expect(w).toBeTruthy()
     })
 
-    test('setup .babelrc into root', () => {
+    test('setup .babelrc', () => {
       const b = filesystem.read(`${name}/.babelrc`)
       expect(b).toBeTruthy()
     })
 
-    test('setup package.json into root', () => {
+    test('setup package.json', () => {
       const p = filesystem.read(`${name}/package.json`)
       expect(p).toBeTruthy()
     })
 
-    test('setup tsconfig.json into root', () => {
+    test('setup tsconfig.json', () => {
       const t = filesystem.read(`${name}/tsconfig.json`)
       expect(t).toBeTruthy()
     })
 
-    test('setup jest.config.json into root', () => {
+    test('setup jest.config.json', () => {
       const j = filesystem.read(`${name}/jest.config.json`)
       expect(j).toBeTruthy()
     })
 
-    test('setup .gitignore into root', () => {
+    test('setup .gitignore', () => {
       const g = filesystem.read(`${name}/.gitignore`)
       expect(g).toBeTruthy()
     })
 
-    test('setup README.md into root', () => {
+    test('setup README.md', () => {
       const r = filesystem.read(`${name}/README.md`)
       expect(r).toBeTruthy()
     })
 
-    test('setup linting settings into root', () => {
+    test('setup linting settings', () => {
       const prettierRc = filesystem.read(`${name}/.prettierrc`)
       const prettierIgnore = filesystem.read(`${name}/.prettierignore`)
 
