@@ -21,46 +21,55 @@ describe('start:ts', () => {
 
   describe('generates root folder', () => {
     test('setup webpack.config', () => {
-      const w = filesystem.read(`${name}/webpack.config.js`)
-      expect(w).toBeTruthy()
+      const file = filesystem.read(`${name}/webpack.config.js`)
+      expect(file).toContain("entry: path.resolve(__dirname, 'src', 'index.tsx'),")
+      expect(file).toContain("path: path.resolve(__dirname, 'build'),")
+      expect(file).toContain("filename: 'bundle.js',")
     })
 
     test('setup .babelrc', () => {
-      const b = filesystem.read(`${name}/.babelrc`)
-      expect(b).toBeTruthy()
+      const file = filesystem.read(`${name}/.babelrc`)
+      expect(file).toContain("presets")
+      expect(file).toContain("plugins")
     })
 
     test('setup package.json', () => {
-      const p = filesystem.read(`${name}/package.json`)
-      expect(p).toBeTruthy()
+      const file = filesystem.read(`${name}/package.json`)
+      expect(file).toContain("dependencies")
+      expect(file).toContain("devDependencies")
     })
 
     test('setup tsconfig.json', () => {
-      const t = filesystem.read(`${name}/tsconfig.json`)
-      expect(t).toBeTruthy()
+      const file = filesystem.read(`${name}/tsconfig.json`)
+      expect(file).toContain("compilerOptions")
     })
 
     test('setup jest.config.json', () => {
-      const j = filesystem.read(`${name}/jest.config.json`)
-      expect(j).toBeTruthy()
+      const file = filesystem.read(`${name}/jest.config.json`)
+      // error while reading json file
+      // find a workaround in the future
+      expect(file).toBeTruthy()
     })
 
     test('setup .gitignore', () => {
-      const g = filesystem.read(`${name}/.gitignore`)
-      expect(g).toBeTruthy()
+      const file = filesystem.read(`${name}/.gitignore`)
+      expect(file).toContain('node_modules')
     })
 
     test('setup README.md', () => {
-      const r = filesystem.read(`${name}/README.md`)
-      expect(r).toBeTruthy()
+      const file = filesystem.read(`${name}/README.md`)
+      expect(file).toBeTruthy()
     })
 
     test('setup linting settings', () => {
       const prettierRc = filesystem.read(`${name}/.prettierrc`)
       const prettierIgnore = filesystem.read(`${name}/.prettierignore`)
 
+      // error while reading json file
+      // find a workaround in the future
       expect(prettierRc).toBeTruthy()
-      expect(prettierIgnore).toBeTruthy()
+      expect(prettierIgnore).toContain('node_modules/')
+      expect(prettierIgnore).toContain('.github')
     })
 
     test('setup Docker settings into root', () => {
@@ -68,9 +77,12 @@ describe('start:ts', () => {
       const dockerignore = filesystem.read(`${name}/.dockerignore`)
       const dockerCompose = filesystem.read(`${name}/docker-compose.yml`)
 
-      expect(dockerfile).toBeTruthy()
-      expect(dockerignore).toBeTruthy()
-      expect(dockerCompose).toBeTruthy()
+      expect(dockerfile).toContain('WORKDIR /app')
+      expect(dockerfile).toContain('COPY package.json ./')
+      expect(dockerignore).toContain('node_modules')
+      expect(dockerignore).toContain('Dockerfile')
+      expect(dockerCompose).toContain('services:')
+      expect(dockerCompose).toContain('dockerfile: Dockerfile')
     })
 
     /*
