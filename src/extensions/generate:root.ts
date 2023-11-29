@@ -54,11 +54,10 @@ module.exports = (toolbox: GluegunToolbox) => {
     await template.generate({ ...props })
   }
 
-  toolbox.generateLintingSettings = async (): Promise<void> => {
-    await template.generate({
-      template: 'prettierrc.ejs',
-      target: `${name}/.prettierrc`,
-    })
+  toolbox.getLintingConfig = async (): Promise<void> => {
+    const { data } = await api.get('.prettierrc')
+    write(`./${name}/.prettierrc`, `${data}`)
+
     await template.generate({
       template: 'prettierignore.ejs',
       target: `${name}/.prettierignore`,
@@ -89,7 +88,7 @@ module.exports = (toolbox: GluegunToolbox) => {
       toolbox.getTestConfig(),
       toolbox.generateGitignore(),
       toolbox.generateReadme(),
-      toolbox.generateLintingSettings(),
+      toolbox.getLintingConfig(),
       toolbox.getDockerfile(),
       toolbox.getDockerCompose(),
       toolbox.getDockerIgnore(),
