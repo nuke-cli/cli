@@ -1,6 +1,7 @@
 name: Publish
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -17,7 +18,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - run: npm install
-      
+
       - name: Publish package
         run: npm publish --access public
         env:
