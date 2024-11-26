@@ -5,7 +5,7 @@ const name = 'project'
 let output: string // used into the artifact
 // let io: MockSTDIN// used into the artifact
 
-const terminal = async (cmd) =>
+const terminal = async (cmd: string) =>
   system.run('node ' + filesystem.path(src, 'bin', 'nuke-cli') + ` ${cmd}`)
 
 describe('start:ts', () => {
@@ -88,42 +88,9 @@ describe('start:ts', () => {
     })
 
     /*
-    ** Test for prompt interactions
-    ** Must be reviewed
-    ** Original example from example from https://shift.infinite.red/integration-testing-interactive-clis-93af3cc0d56f
-
-    test('creates linting settings', async done => {
-      const keys = {
-        up: '\x1B\x5B\x41',
-        down: '\x1B\x5B\x42',
-        enter: '\x0D',
-        space: '\x20'
-      }
-
-      const sendKeystrokes = async () => {
-        io.send(keys.down)
-        io.send(keys.enter)
-      }
-      setTimeout(() => sendKeystrokes().then(), 5)
-
-      const answer = await prompt.ask({
-        name: 'lint',
-        type: 'select',
-        message: 'Generate linting settings (prettier)?',
-        choices: ['No', 'Yes']
-      })
-
-      expect(answer).toEqual({ lint: 'Yes' })
-
-      const prettierRc = filesystem.read(`${name}/.prettierrc`)
-      const prettierIgnore = filesystem.read(`${name}/.prettierignore`)
-
-      expect(prettierRc).toBeTruthy()
-      expect(prettierIgnore).toBeTruthy()
-
-      done();
-    })
-    */
+     ** Test for prompt interactions must be reviewed.
+     ** Original example from example from https://shift.infinite.red/integration-testing-interactive-clis-93af3cc0d56f
+     */
   })
 
   describe('generates /src', () => {
