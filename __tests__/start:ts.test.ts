@@ -5,7 +5,7 @@ const name = 'project'
 let output: string // used into the artifact
 // let io: MockSTDIN// used into the artifact
 
-const terminal = async (cmd) =>
+const terminal = async (cmd: string) =>
   system.run('node ' + filesystem.path(src, 'bin', 'nuke-cli') + ` ${cmd}`)
 
 describe('start:ts', () => {
@@ -20,47 +20,58 @@ describe('start:ts', () => {
   })
 
   describe('generates root folder', () => {
-    test('setup webpack.config into root', () => {
-      const w = filesystem.read(`${name}/webpack.config.js`)
-      expect(w).toBeTruthy()
+    test('setup webpack.config', () => {
+      const file = filesystem.read(`${name}/webpack.config.js`)
+      expect(file).toContain(
+        "entry: path.resolve(__dirname, 'src', 'index.tsx'),"
+      )
+      expect(file).toContain("path: path.resolve(__dirname, 'build'),")
+      expect(file).toContain("filename: 'bundle.js',")
     })
 
-    test('setup .babelrc into root', () => {
-      const b = filesystem.read(`${name}/.babelrc`)
-      expect(b).toBeTruthy()
+    test('setup .babelrc', () => {
+      const file = filesystem.read(`${name}/.babelrc`)
+      expect(file).toContain('presets')
+      expect(file).toContain('plugins')
     })
 
-    test('setup package.json into root', () => {
-      const p = filesystem.read(`${name}/package.json`)
-      expect(p).toBeTruthy()
+    test('setup package.json', () => {
+      const file = filesystem.read(`${name}/package.json`)
+      expect(file).toContain('dependencies')
+      expect(file).toContain('devDependencies')
     })
 
-    test('setup tsconfig.json into root', () => {
-      const t = filesystem.read(`${name}/tsconfig.json`)
-      expect(t).toBeTruthy()
+    test('setup tsconfig.json', () => {
+      const file = filesystem.read(`${name}/tsconfig.json`)
+      expect(file).toContain('compilerOptions')
     })
 
-    test('setup jest.config.json into root', () => {
-      const j = filesystem.read(`${name}/jest.config.json`)
-      expect(j).toBeTruthy()
+    test('setup jest.config.json', () => {
+      const file = filesystem.read(`${name}/jest.config.json`)
+      // error while reading json file
+      // find a workaround in the future
+      expect(file).toBeTruthy()
     })
 
-    test('setup .gitignore into root', () => {
-      const g = filesystem.read(`${name}/.gitignore`)
-      expect(g).toBeTruthy()
+    test('setup .gitignore', () => {
+      const file = filesystem.read(`${name}/.gitignore`)
+      expect(file).toContain('node_modules')
     })
 
-    test('setup README.md into root', () => {
-      const r = filesystem.read(`${name}/README.md`)
-      expect(r).toBeTruthy()
+    test('setup README.md', () => {
+      const file = filesystem.read(`${name}/README.md`)
+      expect(file).toBeTruthy()
     })
 
-    test('setup linting settings into root', () => {
+    test('setup linting settings', () => {
       const prettierRc = filesystem.read(`${name}/.prettierrc`)
       const prettierIgnore = filesystem.read(`${name}/.prettierignore`)
 
+      // error while reading json file
+      // find a workaround in the future
       expect(prettierRc).toBeTruthy()
-      expect(prettierIgnore).toBeTruthy()
+      expect(prettierIgnore).toContain('node_modules/')
+      expect(prettierIgnore).toContain('.github')
     })
 
     test('setup Docker settings into root', () => {
@@ -68,48 +79,18 @@ describe('start:ts', () => {
       const dockerignore = filesystem.read(`${name}/.dockerignore`)
       const dockerCompose = filesystem.read(`${name}/docker-compose.yml`)
 
-      expect(dockerfile).toBeTruthy()
-      expect(dockerignore).toBeTruthy()
-      expect(dockerCompose).toBeTruthy()
+      expect(dockerfile).toContain('WORKDIR /app')
+      expect(dockerfile).toContain('COPY package.json ./')
+      expect(dockerignore).toContain('node_modules')
+      expect(dockerignore).toContain('Dockerfile')
+      expect(dockerCompose).toContain('services:')
+      expect(dockerCompose).toContain('dockerfile: Dockerfile')
     })
 
     /*
-    ** Test for prompt interactions
-    ** Must be reviewed
-    ** Original example from example from https://shift.infinite.red/integration-testing-interactive-clis-93af3cc0d56f
-
-    test('creates linting settings', async done => {
-      const keys = {
-        up: '\x1B\x5B\x41',
-        down: '\x1B\x5B\x42',
-        enter: '\x0D',
-        space: '\x20'
-      }
-
-      const sendKeystrokes = async () => {
-        io.send(keys.down)
-        io.send(keys.enter)
-      }
-      setTimeout(() => sendKeystrokes().then(), 5)
-
-      const answer = await prompt.ask({
-        name: 'lint',
-        type: 'select',
-        message: 'Generate linting settings (prettier)?',
-        choices: ['No', 'Yes']
-      })
-
-      expect(answer).toEqual({ lint: 'Yes' })
-
-      const prettierRc = filesystem.read(`${name}/.prettierrc`)
-      const prettierIgnore = filesystem.read(`${name}/.prettierignore`)
-
-      expect(prettierRc).toBeTruthy()
-      expect(prettierIgnore).toBeTruthy()
-
-      done();
-    })
-    */
+     ** Test for prompt interactions must be reviewed.
+     ** Original example from example from https://shift.infinite.red/integration-testing-interactive-clis-93af3cc0d56f
+     */
   })
 
   describe('generates /src', () => {

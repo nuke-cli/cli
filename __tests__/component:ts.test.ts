@@ -5,7 +5,7 @@ const name = 'component'
 const path = `src/components/${name}`
 let output: string // used into the artifact
 
-const CLI = async (cmd) =>
+const CLI = async (cmd: string) =>
   system.run('node ' + filesystem.path(src, 'bin', 'nuke-cli') + ` ${cmd}`)
 
 describe('component:ts', () => {
