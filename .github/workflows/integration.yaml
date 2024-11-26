@@ -1,12 +1,11 @@
 name: CI
 
 on:
+  workflow_dispatch:
   pull_request:
-    branches:
-      ['main', 'develop']
+    branches: ['main', 'develop']
   push:
-    branches:
-      ['main', 'develop']
+    branches: ['main', 'develop']
 
 jobs:
   continuos-integration:
@@ -26,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Installs and sets up a Node version into Github's virtual machine 
+      # Installs and sets up a Node version into Github's virtual machine
       - name: Installing Node
         uses: actions/setup-node@v3
         with:
