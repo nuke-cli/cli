@@ -1,6 +1,6 @@
 {
   "name": "nuke-cli",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "A CLI focused on powering the start of your web project.",
   "author": {
     "name": "cl4pper",
@@ -14,8 +14,8 @@
     "clean-build": "rimraf -rf ./build",
     "compile": "tsc -p .",
     "copy-templates": "copyfiles ./src/templates/* ./build/templates",
-    "build": "yarn clean-build && yarn compile && yarn copy-templates",
-    "prepublishOnly": "yarn build",
+    "build": "npm run clean-build && npm run compile && npm run copy-templates",
+    "prepublishOnly": "npm run build",
     "format": "prettier --write '**/*.ejs' '**/*.test.ts' '**/*.ts' --no-error-on-unmatched-pattern",
     "test": "jest",
     "watch": "jest --watch",
