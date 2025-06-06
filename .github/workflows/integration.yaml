@@ -43,4 +43,4 @@ jobs:
 
       # To run tests
       - name: Testing
-        run: npm test
+        run: npm run test
