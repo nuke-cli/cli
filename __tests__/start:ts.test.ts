@@ -23,7 +23,7 @@ describe('start:ts', () => {
     test('setup webpack.config', () => {
       const file = filesystem.read(`${name}/webpack.config.js`)
       expect(file).toContain(
-        "entry: path.resolve(__dirname, 'src', 'index.tsx'),"
+        "entry: path.resolve(__dirname, 'src', 'index.tsx'),",
       )
       expect(file).toContain("path: path.resolve(__dirname, 'build'),")
       expect(file).toContain("filename: 'bundle.js',")
