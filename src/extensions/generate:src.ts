@@ -16,7 +16,7 @@ module.exports = (toolbox: GluegunToolbox) => {
 
   toolbox.generateAppTest = async (): Promise<void> => {
     const props = {
-      template: 'app.test.tsx.ejs',
+      template: 'test.tsx.ejs',
       target: `${path}/App.test.tsx`,
     }
 
