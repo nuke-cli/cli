@@ -1,7 +1,7 @@
 {
   "name": "nuke-cli",
-  "version": "1.1.7",
-  "description": "A CLI focused on powering the start of your web project.",
+  "version": "1.1.8",
+  "description": "A CLI to help you starting a react project.",
   "author": {
     "name": "cl4pper",
     "email": "cl4pper@gmail.com"
@@ -13,7 +13,7 @@
   "scripts": {
     "clean-build": "rimraf -rf ./build",
     "compile": "tsc -p .",
-    "copy-templates": "copyfiles ./src/templates/* ./build/templates",
+    "copy-templates": "copyfiles -u 1 ./src/templates/*.ejs ./build",
     "build": "yarn clean-build && yarn compile && yarn copy-templates",
     "prepublishOnly": "yarn build",
     "format": "prettier --write '**/*.ejs' '**/*.test.ts' '**/*.ts' --no-error-on-unmatched-pattern",
