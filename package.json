@@ -1,6 +1,6 @@
 {
   "name": "nuke-cli",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "A CLI focused on powering the start of your web project.",
   "author": {
     "name": "cl4pper",
@@ -52,7 +52,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "gluegun": "^5.2.0"
+    "gluegun": "^5.2.2"
   },
   "devDependencies": {
     "@types/jest": "29.5.14",
