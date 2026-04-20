@@ -14,10 +14,19 @@ module.exports = (toolbox: GluegunToolbox) => {
     await template.generate({ ...props })
   }
 
-  toolbox.generateAppSASS = async (): Promise<void> => {
+  toolbox.generateAppTest = async (): Promise<void> => {
     const props = {
-      template: 'app.sass.ejs',
-      target: `${path}/App.sass`,
+      template: 'app.test.tsx.ejs',
+      target: `${path}/App.test.tsx`,
+    }
+
+    await template.generate({ ...props })
+  }
+
+  toolbox.generateIndexSASS = async (): Promise<void> => {
+    const props = {
+      template: 'index.sass.ejs',
+      target: `${path}/index.sass`,
     }
 
     await template.generate({ ...props })
@@ -35,8 +44,9 @@ module.exports = (toolbox: GluegunToolbox) => {
   toolbox.generateSRC = async () => {
     Promise.all([
       toolbox.generateAppTSX(),
-      toolbox.generateAppSASS(),
+      toolbox.generateAppTest(),
       toolbox.generateIndexTSX(),
+      toolbox.generateIndexSASS(),
     ])
   }
 }

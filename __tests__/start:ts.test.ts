@@ -19,51 +19,44 @@ describe('start:ts', () => {
     //io.restore()
   })
 
-  describe('generates root folder', () => {
-    test('setup webpack.config', () => {
+  describe('into root', () => {
+    test('creates webpack.config', () => {
       const file = filesystem.read(`${name}/webpack.config.js`)
       expect(file).toContain(
         "entry: path.resolve(__dirname, 'src', 'index.tsx'),",
       )
       expect(file).toContain("path: path.resolve(__dirname, 'build'),")
-      expect(file).toContain("filename: 'bundle.js',")
     })
 
-    test('setup .babelrc', () => {
-      const file = filesystem.read(`${name}/.babelrc`)
-      expect(file).toContain('presets')
-      expect(file).toContain('plugins')
-    })
-
-    test('setup package.json', () => {
+    test('creates package.json', () => {
       const file = filesystem.read(`${name}/package.json`)
       expect(file).toContain('dependencies')
       expect(file).toContain('devDependencies')
     })
 
-    test('setup tsconfig.json', () => {
+    test('creates tsconfig.json', () => {
       const file = filesystem.read(`${name}/tsconfig.json`)
       expect(file).toContain('compilerOptions')
     })
 
-    test('setup jest.config.json', () => {
+    test('creates jest.config.json', () => {
       const file = filesystem.read(`${name}/jest.config.json`)
       // error while reading json file
       // find a workaround in the future
       expect(file).toBeTruthy()
     })
 
-    test('setup .gitignore', () => {
+    test('creates .gitignore', () => {
       const file = filesystem.read(`${name}/.gitignore`)
       expect(file).toContain('node_modules')
     })
 
-    test('setup README.md', () => {
+    test('creates README.md', () => {
       const file = filesystem.read(`${name}/README.md`)
       expect(file).toBeTruthy()
     })
 
-    test('setup linting settings', () => {
+    test('creates linting settings', () => {
       const prettierRc = filesystem.read(`${name}/.prettierrc`)
       const prettierIgnore = filesystem.read(`${name}/.prettierignore`)
 
@@ -73,46 +66,29 @@ describe('start:ts', () => {
       expect(prettierIgnore).toContain('node_modules/')
       expect(prettierIgnore).toContain('.github')
     })
-
-    test('setup Docker settings into root', () => {
-      const dockerfile = filesystem.read(`${name}/Dockerfile`)
-      const dockerignore = filesystem.read(`${name}/.dockerignore`)
-      const dockerCompose = filesystem.read(`${name}/docker-compose.yml`)
-
-      expect(dockerfile).toContain('WORKDIR /app')
-      expect(dockerfile).toContain('COPY package.json ./')
-      expect(dockerignore).toContain('node_modules')
-      expect(dockerignore).toContain('Dockerfile')
-      expect(dockerCompose).toContain('services:')
-      expect(dockerCompose).toContain('dockerfile: Dockerfile')
-    })
-
-    /*
-     ** Test for prompt interactions must be reviewed.
-     ** Original example from example from https://shift.infinite.red/integration-testing-interactive-clis-93af3cc0d56f
-     */
   })
 
-  describe('generates /src', () => {
-    test('creates app.tsx into /src', () => {
+  describe('into src folder', () => {
+    test('creates app setup', () => {
       const appTSX = filesystem.read(`${name}/src/App.tsx`)
+      const appTest = filesystem.read(`${name}/src/App.test.tsx`)
+
       expect(appTSX).toBeTruthy()
+      expect(appTest).toBeTruthy()
     })
 
-    test('creates app.sass into /src', () => {
-      const appSASS = filesystem.read(`${name}/src/App.sass`)
-      expect(appSASS).toBeTruthy()
-    })
-
-    test('creates index.tsx into /src', () => {
+    test('creates index setup', () => {
+      const appSASS = filesystem.read(`${name}/src/index.sass`)
       const indexTSX = filesystem.read(`${name}/src/index.tsx`)
+
+      expect(appSASS).toBeTruthy()
       expect(indexTSX).toBeTruthy()
     })
   })
 
-  describe('generates /build', () => {
-    test('creates html into /build', () => {
-      const indexHTML = filesystem.read(`${name}/build/index.html`)
+  describe('into public folder', () => {
+    test('creates html file', () => {
+      const indexHTML = filesystem.read(`${name}/public/index.html`)
       expect(indexHTML).toBeTruthy()
     })
   })

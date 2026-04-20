@@ -13,7 +13,7 @@
   "scripts": {
     "clean-build": "rimraf -rf ./build",
     "compile": "tsc -p .",
-    "copy-templates": "copyfiles ./src/templates/* ./build/build/templates",
+    "copy-templates": "copyfiles ./src/templates/* ./build/templates",
     "build": "yarn clean-build && yarn compile && yarn copy-templates",
     "prepublishOnly": "yarn build",
     "format": "prettier --write '**/*.ejs' '**/*.test.ts' '**/*.ts' --no-error-on-unmatched-pattern",
@@ -67,7 +67,6 @@
     "jest": "29.7.0",
     "prettier": "3.5.3",
     "pretty-quick": "4.2.2",
-    "rimraf": "^6.0.1",
     "ts-jest": "29.3.4",
     "ts-node": "^10.9.1",
     "typescript": "5.8.3"
