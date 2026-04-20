@@ -1,7 +1,7 @@
 {
   "name": "nuke-cli",
-  "version": "1.1.7",
-  "description": "A CLI focused on powering the start of your web project.",
+  "version": "1.1.8",
+  "description": "A CLI to help you starting a react project.",
   "author": {
     "name": "cl4pper",
     "email": "cl4pper@gmail.com"
