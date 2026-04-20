@@ -1,4 +1,5 @@
 import { GluegunToolbox } from 'gluegun'
+import * as constants from '../constants'
 
 module.exports = (toolbox: GluegunToolbox) => {
   const {
@@ -8,30 +9,50 @@ module.exports = (toolbox: GluegunToolbox) => {
     filesystem: { write },
   } = toolbox
   const name = parameters.first
-  const baseURL = 'https://raw.githubusercontent.com/cl4pper/react-setup/main/'
-  // instatiate the api connection
-  const api = http.create({ baseURL })
+  const api = http.create({ baseURL: constants.BASE_URL })
 
+  /*
+    fetching from repository
+  */
   toolbox.getWebpack = async (): Promise<void> => {
     const { data } = await api.get('webpack.config.js')
     write(`./${name}/webpack.config.js`, `${data}`)
   }
 
-  toolbox.getBabelrc = async (): Promise<void> => {
-    const { data } = await api.get('.babelrc')
-    write(`./${name}/.babelrc`, JSON.stringify(data, null, 2))
-  }
-
+  /*
+    fetching from repository
+  */
   toolbox.getPackageJSON = async (): Promise<void> => {
     const { data } = await api.get('package.json')
     write(`./${name}/package.json`, JSON.stringify(data, null, 2))
   }
 
+  /*
+    fetching from repository
+  */
   toolbox.getTSConfig = async (): Promise<void> => {
+    /*
     const { data } = await api.get('tsconfig.json')
     write(`./${name}/tsconfig.json`, JSON.stringify(data, null, 2))
+    */
+    await template.generate({
+      template: 'tsconfig.json.ejs',
+      target: `${name}/tsconfig.json`,
+      props: { name },
+    })
   }
 
+  /*
+    fetching from repository
+  */
+  toolbox.getTestConfig = async (): Promise<void> => {
+    const { data } = await api.get('jest.config.json')
+    write(`./${name}/jest.config.json`, `${JSON.stringify(data, null, 2)}`)
+  }
+
+  /*
+    using templates
+  */
   toolbox.generateReadme = async (): Promise<void> => {
     await template.generate({
       template: 'readme.ejs',
@@ -40,11 +61,9 @@ module.exports = (toolbox: GluegunToolbox) => {
     })
   }
 
-  toolbox.getTestConfig = async (): Promise<void> => {
-    const { data } = await api.get('jest.config.json')
-    write(`./${name}/jest.config.json`, `${data}`)
-  }
-
+  /*
+    using templates
+  */
   toolbox.generateGitignore = async (): Promise<void> => {
     const props = {
       template: 'gitignore.ejs',
@@ -54,9 +73,13 @@ module.exports = (toolbox: GluegunToolbox) => {
     await template.generate({ ...props })
   }
 
+  /*
+    fetching from repository &
+    using templates
+  */
   toolbox.getLintingConfig = async (): Promise<void> => {
     const { data } = await api.get('.prettierrc')
-    write(`./${name}/.prettierrc`, `${data}`)
+    write(`./${name}/.prettierrc`, `${JSON.stringify(data, null, 2)}`)
 
     await template.generate({
       template: 'prettierignore.ejs',
@@ -64,34 +87,15 @@ module.exports = (toolbox: GluegunToolbox) => {
     })
   }
 
-  toolbox.getDockerfile = async (): Promise<void> => {
-    const { data } = await api.get('Dockerfile')
-    write(`./${name}/Dockerfile`, `${data}`)
-  }
-
-  toolbox.getDockerCompose = async (): Promise<void> => {
-    const { data } = await api.get('docker-compose.yml')
-    write(`./${name}/docker-compose.yml`, `${data}`)
-  }
-
-  toolbox.getDockerIgnore = async (): Promise<void> => {
-    const { data } = await api.get('.dockerignore')
-    write(`./${name}/.dockerignore`, `${data}`)
-  }
-
   toolbox.generateRoot = (): void => {
     Promise.all([
       toolbox.getWebpack(),
-      toolbox.getBabelrc(),
       toolbox.getPackageJSON(),
       toolbox.getTSConfig(),
       toolbox.getTestConfig(),
       toolbox.generateGitignore(),
       toolbox.generateReadme(),
       toolbox.getLintingConfig(),
-      toolbox.getDockerfile(),
-      toolbox.getDockerCompose(),
-      toolbox.getDockerIgnore(),
     ])
   }
 }

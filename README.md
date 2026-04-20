@@ -42,30 +42,11 @@ Coming up...
 > Component fun-button folder has been created.
 ```
 
-## Misc:
+## For developers:
 
-Folder structure inside the project folder:
+> `npm link` allows you running CLI commands locally
 
-```
-/build
--- index.html
-/src
--- App.sass
--- App.tsx
--- index.tsx
-.babelrc
-.dockerignore
-.gitignore
-.prettierignore
-.prettierrc
-docker-compose.yml
-Dockerfile
-jest.config.json
-package.json
-README.md
-tsconfig.json
-webpack.config.json
-```
+> `npm run test` runs unit tests
 
 ##
 
