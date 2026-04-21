@@ -1,4 +1,4 @@
-# nuke-cli [![CI](https://github.com/cl4pper/nuke-cli/actions/workflows/integration.yaml/badge.svg)](https://github.com/cl4pper/nuke-cli/actions/workflows/integration.yaml) [![Publish](https://github.com/cl4pper/nuke-cli/actions/workflows/publish.yaml/badge.svg)](https://github.com/cl4pper/nuke-cli/actions/workflows/publish.yaml)
+# nuke-cli
 
 [![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/nuke-cli)
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/cl4pper/nuke-cli)
